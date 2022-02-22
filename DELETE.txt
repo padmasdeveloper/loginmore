@@ -1,0 +1,6 @@
+@app.route('/delete-record', methods=['DELETE'])
+def delete():
+    request_firstname=request.args.get("name")
+    result=session.query(SignUp).filter(SignUp.firstName==request_firstname).delete()
+    session.commit()
+    return("The record is deleted successfully")

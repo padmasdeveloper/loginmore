@@ -1,0 +1,12 @@
+@app.route('/get_all_records', methods=['GET'])
+def Signup():
+    result = session.query(SignUp).all()
+    result = [item.__dict__ for item in result]
+    return str(result)
+
+@app.route('/startswith', methods=['GET'])
+def getStartsRecord():
+    request_first_name = request.args.get("name")
+    result = session.query(SignUp).filter(SignUp.firstName.like(request_first_name+'%')).all()
+    result = [item.__dict__ for item in result]
+    return str(result)
